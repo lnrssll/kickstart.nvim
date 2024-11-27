@@ -547,6 +547,7 @@ require('lazy').setup({
             },
           },
         },
+        ocamllsp = {},
       }
 
       -- Ensure the servers and tools above are installed
