@@ -76,6 +76,19 @@ vim.opt.scrolloff = 10
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- Prime
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv") -- Move selected line(s) down
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv") -- Move selected line(s) up
+vim.keymap.set('n', '<C-d>', '<C-d>zz') -- Half-page down, keep cursor centered
+vim.keymap.set('n', '<C-u>', '<C-u>zz') -- Half-page up, keep cursor centered
+vim.keymap.set('n', 'n', 'nzzzv') -- Next search result, keep cursor centered with cursorline
+vim.keymap.set('n', 'N', 'Nzzzv') -- Previous search result, keep cursor centered with cursorline
+
+-- Me
+vim.keymap.set('n', '<leadery', '<cmd>let @+=expand("%")<CR>', { desc = 'Copy current file path to clipboard' })
+vim.keymap.set('n', '<leader>d', 'i<C-R>=strftime("%A, %B %d, %Y at %I:%M:%S %p")<CR><Esc>', { desc = 'Insert current date' })
+vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open netrw explorer' })
+
 -- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
