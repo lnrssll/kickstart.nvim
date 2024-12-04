@@ -836,6 +836,14 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      local starter = require 'mini.starter'
+      starter.setup {
+        header = 'yo',
+        items = {
+          starter.sections.recent_files(10, true),
+        },
+        footer = '',
+      }
     end,
   },
   { -- Highlight, edit, and navigate code
