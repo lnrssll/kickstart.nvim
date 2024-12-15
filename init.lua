@@ -85,7 +85,6 @@ vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line(s) down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected line(s) up' })
 -- overrides keeping current line centered
-vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'joining lines with J' })
 vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half-page down, keep cursor centered' })
 vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half-page up, keep cursor centered' })
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result, keep cursor centered with cursorline' })
