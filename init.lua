@@ -4,6 +4,8 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.g.netrw_banner = 0
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true
 
@@ -69,20 +71,33 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
-
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Prime
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv") -- Move selected line(s) down
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv") -- Move selected line(s) up
-vim.keymap.set('n', '<C-d>', '<C-d>zz') -- Half-page down, keep cursor centered
-vim.keymap.set('n', '<C-u>', '<C-u>zz') -- Half-page up, keep cursor centered
-vim.keymap.set('n', 'n', 'nzzzv') -- Next search result, keep cursor centered with cursorline
-vim.keymap.set('n', 'N', 'Nzzzv') -- Previous search result, keep cursor centered with cursorline
+-- special actions
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selected line(s) down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selected line(s) up' })
+-- overrides keeping current line centered
+vim.keymap.set('n', 'J', 'mzJ`z', { desc = 'joining lines with J' })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Half-page down, keep cursor centered' })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Half-page up, keep cursor centered' })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Next search result, keep cursor centered with cursorline' })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Previous search result, keep cursor centered with cursorline' })
+-- navigation
+vim.keymap.set('n', '<leader>k', '<cmd>cnext<CR>zz', { desc = 'navigate the quickfix list next' })
+vim.keymap.set('n', '<leader>j', '<cmd>cprev<CR>zz', { desc = 'navigate the quickfix list prev' })
+vim.keymap.set('n', '<C-k>', '<cmd>lnext<CR>zz', { desc = 'navigate location list next' })
+vim.keymap.set('n', '<C-j>', '<cmd>lprev<CR>zz', { desc = 'navigate location list prev' })
+-- escape
+vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'ctrl+c to escape insert mode' })
+vim.keymap.set('i', '<C-d>', '<Esc>', { desc = 'ctrl+d to escape insert mode' })
 
 -- Me
 vim.keymap.set('n', '<leadery', '<cmd>let @+=expand("%")<CR>', { desc = 'Copy current file path to clipboard' })
@@ -842,7 +857,10 @@ require('lazy').setup({
         items = {
           starter.sections.recent_files(10, true),
         },
-        footer = '',
+        footer = (function()
+          local content = vim.fn.readfile(vim.fn.expand '~/.daily-verse.txt')
+          return table.concat(content, '\n')
+        end)(),
       }
     end,
   },
