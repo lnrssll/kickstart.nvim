@@ -606,6 +606,9 @@ require('lazy').setup({
         },
         ocamllsp = {},
         ruby_lsp = {},
+        clangd = {},
+        pyright = {},
+        shellcheck = {},
       }
 
       -- Ensure the servers and tools above are installed
