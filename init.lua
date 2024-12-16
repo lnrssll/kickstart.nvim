@@ -99,7 +99,7 @@ vim.keymap.set('i', '<C-c>', '<Esc>', { desc = 'ctrl+c to escape insert mode' })
 vim.keymap.set('i', '<C-d>', '<Esc>', { desc = 'ctrl+d to escape insert mode' })
 
 -- Me
-vim.keymap.set('n', '<leadery', '<cmd>let @+=expand("%")<CR>', { desc = 'Copy current file path to clipboard' })
+vim.keymap.set('n', '<leader>y', '<cmd>let @+=expand("%")<CR>', { desc = 'Copy current file path to clipboard' })
 vim.keymap.set('n', '<leader>d', 'i<C-R>=strftime("%A, %B %d, %Y at %I:%M:%S %p")<CR><Esc>', { desc = 'Insert current date' })
 vim.keymap.set('n', '<leader>e', '<cmd>Ex<CR>', { desc = 'Open netrw explorer' })
 
