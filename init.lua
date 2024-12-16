@@ -871,14 +871,43 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+
+      -- see more ascii art:
+      --  https://asciiart.website/index.php?art=transportation/airplanes
+      --  https://asciiart.website/index.php?art=transportation/nautical
       local starter = require 'mini.starter'
       starter.setup {
-        header = 'yo',
-        items = {
-          starter.sections.recent_files(10, true),
-        },
+        header = [[
+                                               ___
+                                            ,o88888
+                                         ,o8888888'
+                   ,:o:o:oooo.        ,8O88Pd8888"
+               ,.::.::o:ooooOoOoO. ,oO8O8Pd888'"
+             ,.:.::o:ooOoOoOO8O8OOo.8OOPd8O8O"
+            , ..:.::o:ooOoOOOO8OOOOo.FdO8O8"
+           , ..:.::o:ooOoOO8O888O8O,COCOO"
+          , . ..:.::o:ooOoOOOO8OOOOCOCO"
+           . ..:.::o:ooOoOoOO8O8OCCCC"o
+              . ..:.::o:ooooOoCoCCC"o:o
+              . ..:.::o:o:,cooooCo"oo:o:
+           `   . . ..:.:cocoooo"'o:o:::'
+           .`   . ..::ccccoc"'o:o:o:::'
+          :.:.    ,c:cccc"':.:.:.:.:.'
+        ..:.:"'`::::c:"'..:.:.:.:.:.'
+      ...:.'.:.::::"'    . . . . .'
+     .. . ....:."' `   .  . . ''
+   . . . ...."'
+   .. . ."'
+  .
+]],
+
+        items = {},
         footer = (function()
-          local content = vim.fn.readfile(vim.fn.expand '~/.daily-verse.txt')
+          local path = vim.fn.expand '~/.daily-verse.txt'
+          local ok, content = pcall(vim.fn.readfile, path)
+          if not ok then
+            return ''
+          end
           return table.concat(content, '\n')
         end)(),
       }
